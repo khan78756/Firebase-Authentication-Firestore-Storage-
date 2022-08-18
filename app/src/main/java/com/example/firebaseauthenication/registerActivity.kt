@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firebaseauthenication.Global.Companion.auth
 import com.example.firebaseauthenication.databinding.ActivityRegisterBinding
 
 class registerActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class registerActivity : AppCompatActivity() {
             val email=binding.etemail.text.toString()
             val password=binding.etpass.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty()){
-                MainActivity.auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful){
                         Intent(this,loginActivity::class.java).also {
                             startActivity(it)

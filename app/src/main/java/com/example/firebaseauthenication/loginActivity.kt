@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.firebaseauthenication.Global.Companion.auth
 import com.example.firebaseauthenication.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,13 +21,7 @@ class loginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        //Configure sign in
-        val gso=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.Client_id))
-            .requestEmail()
-            .build()
 
-        val googleSignInClient=GoogleSignIn.getClient(this,gso)
 
         binding.btnregister.setOnClickListener {
 
@@ -42,7 +37,7 @@ class loginActivity : AppCompatActivity() {
             val email=binding.etemail.text.toString()
             val password=binding.etpass.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty()){
-                MainActivity.auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful){
                         Intent(this,MainActivity::class.java).also {
                             startActivity(it)
@@ -56,6 +51,13 @@ class loginActivity : AppCompatActivity() {
                 }
             }
         }
+        //Configure sign in
+        val gso=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.Client_id))
+            .requestEmail()
+            .build()
+
+        val googleSignInClient=GoogleSignIn.getClient(this,gso)
 
         binding.gmail.setOnClickListener {
             googleSignInClient.signOut()
@@ -75,12 +77,13 @@ class loginActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val cradential=GoogleAuthProvider.getCredential(idToken,null)
-        MainActivity.auth.signInWithCredential(cradential)
+            auth.signInWithCredential(cradential)
             .addOnCompleteListener(this){ task->
                 if (task.isSuccessful){
                     Intent(this,MainActivity::class.java).also {
                         startActivity(it)
-                        finish()}
+                        finish()
+                    }
                 }
             }.addOnFailureListener {
                 Toast.makeText(this,"Wrong",Toast.LENGTH_SHORT).show()
