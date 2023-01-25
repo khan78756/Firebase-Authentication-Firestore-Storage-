@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/drawable/camera.xml" value="0.1155" />
+        <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/drawable/customet.xml" value="0.1155" />
         <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/AndroidstudioProjects/FirebaseAuthenication/app/src/main/res/layout/activity_registeractivity2.xml" value="0.2046875" />
       </map>
     </option>
   </component>

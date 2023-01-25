@@ -19,20 +19,13 @@ class loginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
-
+        supportActionBar!!.hide()
         binding.btnregister.setOnClickListener {
 
-            Intent(this,registerActivity::class.java).also {
+            Intent(this,registeractivity2::class.java).also {
                 startActivity(it)
                 finish()
-
-            }
-
-        }
-
+            } }
         binding.btnlogin.setOnClickListener {
             val email=binding.etemail.text.toString()
             val password=binding.etpass.text.toString()
@@ -41,11 +34,7 @@ class loginActivity : AppCompatActivity() {
                     if (it.isSuccessful){
                         Intent(this,MainActivity::class.java).also {
                             startActivity(it)
-                            finish()}
-
-                    }
-
-
+                            finish()} }
                 }.addOnFailureListener{
                     Toast.makeText(this,"Please Sign with Google Email",Toast.LENGTH_SHORT).show()
                 }
@@ -74,7 +63,6 @@ class loginActivity : AppCompatActivity() {
             firebaseAuthWithGoogle(account.idToken)
         }
     }
-
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val cradential=GoogleAuthProvider.getCredential(idToken,null)
             auth.signInWithCredential(cradential)
